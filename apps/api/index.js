@@ -1,14 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const db = require('./db');
+const bodyParser = require('body-parser');
+const db = require('./db/db');
 const controllers = require('./controllers');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
 const apiRouter = express.Router();
-apiRouter.route('/posts').get(controllers.getPosts).post(controllers.createPost);
-apiRouter.post('/posts/:postID', controllers.likePost);
+const jsonParser = bodyParser.json();
+
+apiRouter.route('/posts').get(jsonParser, controllers.getPosts).post(jsonParser, controllers.createPost).put(jsonParser, controllers.likePost);
 
 app.use('/api', apiRouter);
 app.get('/ping', (req, res) => {
