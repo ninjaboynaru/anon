@@ -6,4 +6,8 @@ async function connect() {
 	return client.connect();
 }
 
-module.exports = { connect };
+async function query(queryValue) {
+	return client.query(queryValue);
+}
+
+module.exports = { connect, query };

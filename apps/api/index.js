@@ -24,7 +24,7 @@ async function connect() {
 		throw new Error(`Failed to connect to DB\n------\n${dbErr}\n------`);
 	}
 
-	app.listen(port, () => {
+	app.listen(port, async() => {
 		console.log(`API running on port ${port}`);
 	});
 }
