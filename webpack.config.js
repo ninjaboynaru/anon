@@ -10,7 +10,7 @@ module.exports = {
 	devtool,
 	entry: path.join(__dirname, 'apps/client/js/index.js'),
 	output: {
-		path: path.join(__dirname, 'apps/client'),
+		path: path.join(__dirname, 'apps/client/public'),
 		filename: 'bundle.js'
 	},
 	resolve: {

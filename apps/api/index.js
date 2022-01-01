@@ -1,21 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const bodyParser = require('body-parser');
 const db = require('./db/db');
-const controllers = require('./controllers');
+const debugRouter = require('./routers/debugRouter');
+const staticRouter = require('./routers/staticRouter');
+const apiRouter = require('./routers/apiRouter');
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-const apiRouter = express.Router();
-const jsonParser = bodyParser.json();
-
-apiRouter.route('/posts').get(jsonParser, controllers.getPosts).post(jsonParser, controllers.createPost).put(jsonParser, controllers.likePost);
-
-app.use('/api', apiRouter);
-app.get('/ping', (req, res) => {
-	res.end('PONG');
-});
+app.use(debugRouter);
+app.use(apiRouter);
+app.use(staticRouter);
 
 async function connect() {
 	try {
