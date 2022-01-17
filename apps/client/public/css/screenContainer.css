@@ -1,0 +1,40 @@
+.screen-container {
+    width: 100%;
+    height: 100%;
+}
+
+.screen-container__nav {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-primary);
+}
+
+.screen-container__nav__brand {
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	color: var(--color-on-primary);
+}
+
+.screen-container__nav__brand-icon {
+    font-size: 1rem;
+}
+
+.screen-container__nav__brand-text {
+    font-family: 'Merienda One';
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.screen-container__nav__buttons {
+
+}
+
+.screen-container__content {
+    margin: 1rem;
+}

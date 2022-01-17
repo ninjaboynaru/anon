@@ -1,7 +1,8 @@
 import React from 'react';
+import ScreenContainer from '../ScreenContainer';
 
 function PostsScreen() {
-	return <h1>Posts Screen</h1>;
+	return <ScreenContainer />;
 }
 
 export default PostsScreen;
