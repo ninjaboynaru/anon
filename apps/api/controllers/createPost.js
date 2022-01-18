@@ -4,7 +4,7 @@ const { internalError, clientError } = require('./util');
 module.exports = async function createPost(req, res) {
 	const { text } = req.body;
 
-	if (typeof text !== 'string' || text.trim().length > 250) {
+	if (typeof text !== 'string' || text.trim().length > 300) {
 		return clientError(res, 'Invalid "text" property');
 	}
 
