@@ -1,7 +1,8 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Planet } from 'iconoir-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 
 function ScreenContainer({ children }) {
@@ -18,7 +19,7 @@ function ScreenContainer({ children }) {
 		<div className="screen-container">
 			<div className="screen-container__nav">
 				<div className="screen-container__nav__brand">
-					<Planet className="screen-container__nav__brand-icon" />
+					<FontAwesomeIcon icon={faPaperPlane} className="screen-container__nav__brand-icon" />
 					<span className="screen-container__nav__brand-text">Anon</span>
 				</div>
 				<div className="screen-container__nav__buttons">

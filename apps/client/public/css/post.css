@@ -1,0 +1,39 @@
+
+.posts-container {
+
+}
+
+.post {
+    --post-inner-spacing: 0.8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 0.8rem;
+    padding: var(--post-inner-spacing);
+    border-radius: 8px;
+    box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.35);
+}
+
+.post__date {
+    font-size: 0.6rem;
+    color: var(--color-primary);
+    margin-bottom: var(--post-inner-spacing);
+}
+
+.post__text {
+    margin-bottom: var(--post-inner-spacing);
+}
+
+.post__control-bar {
+    
+}
+
+.post__control-bar button {
+    margin-right: 2rem;
+}
+
+.posts__control-bar__icon {
+    margin-right: 0.5rem;
+}

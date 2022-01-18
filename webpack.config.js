@@ -3,7 +3,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 require('dotenv').config();
 
 const mode = process.env.NODE_ENV || 'development';
-const devtool = process.env.NODE_ENV === 'production' ? false : 'source-map';
+const devtool = process.env.NODE_ENV === 'production' ? false : 'eval-source-map';
 
 module.exports = {
 	mode,

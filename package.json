@@ -8,10 +8,14 @@
     "lint:api": "esw apps/api/**/*.js --color --fix --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "body-parser": "^1.19.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "iconoir-react": "^2.1.0",
+    "install": "^0.13.0",
+    "npm": "^8.3.1",
     "pg": "^8.7.1",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
