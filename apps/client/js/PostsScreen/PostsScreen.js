@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCat } from '@fortawesome/free-solid-svg-icons';
+import LoadingIcons from 'react-loading-icons';
 import ScreenContainer from '../ScreenContainer';
 import Post from './Post';
 import api from '../api';
@@ -6,20 +9,27 @@ import api from '../api';
 class PostsScreen extends React.Component {
 	constructor() {
 		super();
+		this.page = 0;
 		this.state = { posts: null, loading: true, error: false };
+		this.onPostsScroll = this.onPostsScroll.bind(this);
 		this.likePost = this.likePost.bind(this);
 		this.dislikePost = this.dislikePost.bind(this);
 	}
 
 	componentDidMount() {
-		api.getPosts().then(
+		api.getPosts(this.page).then(
 			(posts) => {
 				this.setState({ loading: false, posts });
 			},
-			() => {
+			(e) => {
+				console.error(e);
 				this.setState({ loading: false, error: true });
 			}
 		);
+	}
+
+	onPostsScroll() {
+		console.log('SCROLL', this);
 	}
 
 	likePost() {
@@ -34,7 +44,7 @@ class PostsScreen extends React.Component {
 		const posts = this.state.posts.map((post) => <Post key={post.id} post={post} likePost={this.likePost} dislikePost={this.dislikePost} />);
 
 		return (
-			<div className="posts-container">
+			<div className="posts-container" onScroll={this.onPostsScroll}>
 				{posts}
 			</div>
 		);
@@ -45,10 +55,10 @@ class PostsScreen extends React.Component {
 		let content;
 
 		if (error === true) {
-			content = <p>An error has occured</p>;
+			content = <p className="error-message"><FontAwesomeIcon icon={faCat} />  Oops, looks like something went wrong on our end. Try agian later</p>;
 		}
 		else if (loading === true) {
-			content = <p>Loading...</p>;
+			content = <LoadingIcons.BallTriangle stroke="#724ed0" />;
 		}
 		else {
 			content = this.buildPostWall();

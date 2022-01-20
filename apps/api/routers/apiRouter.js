@@ -5,6 +5,7 @@ const controllers = require('../controllers');
 
 const apiRouter = express.Router();
 const jsonParser = bodyParser.json();
-apiRouter.route('/api/posts').get(jsonParser, controllers.getPosts).post(jsonParser, controllers.createPost).put(jsonParser, controllers.likePost);
+apiRouter.get('/api/posts/:limit?:page?', controllers.getPosts);
+apiRouter.route('/api/posts/').post(jsonParser, controllers.createPost).put(jsonParser, controllers.likePost);
 
 module.exports = apiRouter;

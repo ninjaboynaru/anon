@@ -1,6 +1,9 @@
 
 .posts-container {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .post {
@@ -10,10 +13,12 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
+    max-width: 600px;
     font-size: 0.8rem;
+    margin-top: 2rem;
     padding: var(--post-inner-spacing);
     border-radius: 8px;
-    box-shadow: 0px 1px 6px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.35);
 }
 
 .post__date {

@@ -1,15 +1,45 @@
 const Post = require('../db/post');
 const { internalError } = require('./util');
 
-module.exports = async function getPosts(req, res) {
-	let { limit = 10, page = 0 } = req.body;
+function isNumber(val) {
+	// eslint-disable-next-line no-restricted-globals
+	return !isNaN(val);
+}
 
-	if (limit <= 0 || limit >= 25 || typeof limit !== 'number') {
-		limit = 10;
+const defaults = {
+	limit: 10,
+	page: 0
+};
+
+const ranges = {
+	limit: {
+		min: 1,
+		max: 25
+	},
+	page: {
+		min: 0
+	}
+};
+
+module.exports = async function getPosts(req, res) {
+	let { limit = defaults.limit, page = defaults.page } = req.query;
+
+	if (isNumber(limit) === false) {
+		limit = defaults.limit;
+	}
+	if (isNumber(page) === false) {
+		page = defaults.page;
 	}
 
-	if (page < 0 || typeof page !== 'number') {
-		page = 0;
+	limit = parseInt(limit, 10);
+	page = parseInt(page, 10);
+
+	if (limit < ranges.limit.min || limit > ranges.limit.max) {
+		limit = defaults.limit;
+	}
+
+	if (page < ranges.page.min) {
+		page = defaults.page;
 	}
 
 	let posts;
