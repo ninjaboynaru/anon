@@ -1,12 +1,10 @@
 const api = new function() {
 	const apiPath = '/api/posts';
+
 	this.getPosts = function getPosts(page = 0) {
 		const url = `${apiPath}/?limit=4&page=${page}`;
-		const fetchOptions = {
-			headers: { 'Content-Type': 'application/json' }
-		};
 
-		return fetch(url, fetchOptions).then(
+		return fetch(url).then(
 			(response) => {
 				if (response.ok === false) {
 					throw new Error('API Response was not OK');
@@ -15,6 +13,32 @@ const api = new function() {
 				return response.json();
 			}
 		);
+	};
+
+	this.likePost = function likePost(postID) {
+		const fetchOptions = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				id: postID,
+				like: true
+			})
+		};
+
+		fetch(apiPath, fetchOptions);
+	};
+
+	this.dislikePost = function dislikePost(postID) {
+		const fetchOptions = {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				id: postID,
+				like: false
+			})
+		};
+
+		fetch(apiPath, fetchOptions);
 	};
 }();
 

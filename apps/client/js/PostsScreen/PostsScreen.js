@@ -23,7 +23,7 @@ class PostsScreen extends React.Component {
 	constructor() {
 		super();
 		this.page = 0;
-		this.state = { posts: null, initialLoading: true, initialError: false, addonLoading: false, addonError: false, noMorePosts: false };
+		this.state = { posts: null, likedPosts: [], dislikedPosts: [], initialLoading: true, initialError: false, addonLoading: false, addonError: false, noMorePosts: false };
 
 		this.onWindowScroll = this.onWindowScroll.bind(this);
 		this.likePost = this.likePost.bind(this);
@@ -91,9 +91,35 @@ class PostsScreen extends React.Component {
 	}
 
 	buildPostWall() {
-		const { posts, addonLoading, addonError, noMorePosts } = this.state;
+		const { posts, likedPosts, dislikedPosts, addonLoading, addonError, noMorePosts } = this.state;
 
-		const postsList = posts.map((post) => <Post key={post.id} post={post} likePost={this.likePost} dislikePost={this.dislikePost} />);
+		const postsList = posts.map((post) => {
+			const postLiked = likedPosts.includes(post.id);
+			const postDisliked = dislikedPosts.includes(post.id);
+			const postAlreadyActedOn = postLiked || postDisliked;
+
+			const onLikeClick = () => {
+				if (postAlreadyActedOn) {
+					return;
+				}
+
+				this.setState((prevState) => ({ likedPosts: [...prevState.likedPosts, post.id] }));
+
+				api.likePost(post.id);
+			};
+
+			const onDislikeClick = () => {
+				if (postAlreadyActedOn) {
+					return;
+				}
+
+				this.setState((prevState) => ({ dislikedPosts: [...prevState.dislikedPosts, post.id] }));
+
+				api.dislikePost(post.id);
+			};
+
+			return <Post key={post.id} post={post} likePost={onLikeClick} dislikePost={onDislikeClick} liked={postLiked} disliked={postDisliked} />;
+		});
 		let loadingIndicator;
 		let errorMessage;
 		let noMorePostsMessage;

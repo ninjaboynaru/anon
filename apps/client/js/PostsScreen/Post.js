@@ -8,7 +8,7 @@ import Button from '../Button';
 
 dayjs.extend(relativeTime);
 
-function Post({ post, likePost, dislikePost }) {
+function Post({ post, likePost, dislikePost, liked, disliked }) {
 	const parsedDate = dayjs(post.date);
 	let dateText;
 
@@ -19,13 +19,23 @@ function Post({ post, likePost, dislikePost }) {
 		dateText = parsedDate.fromNow();
 	}
 
+	let totalLikes = post.likes;
+	let totalDislikes = post.dislikes;
+
+	if (liked) {
+		totalLikes += 1;
+	}
+	else if (disliked) {
+		totalDislikes += 1;
+	}
+
 	return (
 		<div className="post">
 			<span className="post__date">{dateText}</span>
 			<span className="post__text">{post.text}</span>
 			<div className="post__control-bar">
-				<Button primary outline onClick={likePost}><FontAwesomeIcon className="posts__control-bar__icon" icon={faThumbsUp} />{post.likes}</Button>
-				<Button primary outline onClick={dislikePost}><FontAwesomeIcon className="posts__control-bar__icon" icon={faThumbsDown} />{post.dislikes}</Button>
+				<Button primary outline={!liked} onClick={likePost}><FontAwesomeIcon className="posts__control-bar__icon" icon={faThumbsUp} />{totalLikes}</Button>
+				<Button primary outline={!disliked} onClick={dislikePost}><FontAwesomeIcon className="posts__control-bar__icon" icon={faThumbsDown} />{totalDislikes}</Button>
 			</div>
 		</div>
 	);
@@ -39,7 +49,14 @@ Post.propTypes = {
 		dislikes: propTypes.number
 	}).isRequired,
 	likePost: propTypes.func.isRequired,
-	dislikePost: propTypes.func.isRequired
+	dislikePost: propTypes.func.isRequired,
+	liked: propTypes.bool,
+	disliked: propTypes.bool
+};
+
+Post.defaultProps = {
+	liked: false,
+	disliked: false
 };
 
 export default Post;
