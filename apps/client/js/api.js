@@ -1,7 +1,7 @@
 const api = new function() {
 	const apiPath = '/api/posts';
 	this.getPosts = function getPosts(page = 0) {
-		const url = `${apiPath}/?${page}`;
+		const url = `${apiPath}/?limit=4&page=${page}`;
 		const fetchOptions = {
 			headers: { 'Content-Type': 'application/json' }
 		};

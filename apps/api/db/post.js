@@ -22,9 +22,9 @@ class Post {
 		this.date = rows[0].date;
 	}
 
-	static async get(limit = 10, offset = 0) {
+	static async get(limit = 10, page = 0) {
 		const queryString = 'SELECT * FROM post ORDER BY date LIMIT $1 OFFSET $2';
-		const values = [limit, offset];
+		const values = [limit, page * limit];
 		const { rows } = await db.query({ text: queryString, values });
 
 		return rows.map((plainPost) => new Post(plainPost));
