@@ -2,11 +2,11 @@ const api = new function() {
 	const apiPath = '/api/posts';
 
 	this.getPosts = function getPosts(page = 0) {
-		const url = `${apiPath}/?limit=4&page=${page}`;
+		const url = `${apiPath}/?limit=2&page=${page}`;
 
 		return fetch(url).then(
 			(response) => {
-				if (response.ok === false) {
+				if (!response.ok) {
 					throw new Error('API Response was not OK');
 				}
 
@@ -39,6 +39,22 @@ const api = new function() {
 		};
 
 		fetch(apiPath, fetchOptions);
+	};
+
+	this.createPost = function createPost(text) {
+		const fetchOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ text })
+		};
+
+		return fetch(apiPath, fetchOptions).then(
+			(response) => {
+				if (!response.ok) {
+					throw new Error('API Response was not OK');
+				}
+			}
+		);
 	};
 }();
 

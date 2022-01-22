@@ -23,7 +23,7 @@ class Post {
 	}
 
 	static async get(limit = 10, page = 0) {
-		const queryString = 'SELECT * FROM post ORDER BY date LIMIT $1 OFFSET $2';
+		const queryString = 'SELECT * FROM post ORDER BY date DESC LIMIT $1 OFFSET $2';
 		const values = [limit, page * limit];
 		const { rows } = await db.query({ text: queryString, values });
 

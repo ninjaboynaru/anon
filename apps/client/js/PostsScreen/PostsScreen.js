@@ -1,9 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCat } from '@fortawesome/free-solid-svg-icons';
+import { faCat, faPen } from '@fortawesome/free-solid-svg-icons';
 import LoadingIcons from 'react-loading-icons';
+import withNavigate from '../withNavigate';
 import ScreenContainer from '../ScreenContainer';
+import Button from '../Button';
 import Post from './Post';
 import api from '../api';
 
@@ -25,21 +27,21 @@ class PostsScreen extends React.Component {
 		this.page = 0;
 		this.state = { posts: null, likedPosts: [], dislikedPosts: [], initialLoading: true, initialError: false, addonLoading: false, addonError: false, noMorePosts: false };
 
-		this.onWindowScroll = this.onWindowScroll.bind(this);
+		this.checkWindowScroll = this.checkWindowScroll.bind(this);
 		this.likePost = this.likePost.bind(this);
 		this.dislikePost = this.dislikePost.bind(this);
 	}
 
 	componentDidMount() {
-		window.addEventListener('scroll', this.onWindowScroll);
+		window.addEventListener('scroll', this.checkWindowScroll);
 		this.loadInitialPosts();
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('scroll', this.onWindowScroll);
+		window.removeEventListener('scroll', this.checkWindowScroll);
 	}
 
-	onWindowScroll() {
+	checkWindowScroll() {
 		const { initialLoading, initialError, addonLoading, addonError, noMorePosts } = this.state;
 		const loading = initialLoading || addonLoading;
 		const error = initialError || addonError;
@@ -54,6 +56,7 @@ class PostsScreen extends React.Component {
 		api.getPosts(this.page).then(
 			(posts) => {
 				this.setState({ initialLoading: false, posts });
+				this.checkWindowScroll();
 			},
 			() => {
 				this.setState({ initialLoading: false, initialError: true });
@@ -134,8 +137,10 @@ class PostsScreen extends React.Component {
 			noMorePostsMessage = <ErrorMessage>Nothing left to show at this time</ErrorMessage>;
 		}
 
+		const onCreatePostClick = () => this.props.navigate('/create');
 		return (
 			<div className="posts-container">
+				<Button primary onClick={onCreatePostClick}><FontAwesomeIcon icon={faPen} />{'  Post Anonymously'}</Button>
 				{postsList}
 				{loadingIndicator}
 				{errorMessage}
@@ -166,4 +171,8 @@ class PostsScreen extends React.Component {
 	}
 }
 
-export default PostsScreen;
+PostsScreen.propTypes = {
+	navigate: propTypes.func.isRequired
+};
+
+export default withNavigate(PostsScreen);

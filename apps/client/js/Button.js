@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-function Button({ children, onClick, primary, secondary, subdued, outline }) {
+function Button({ children, onClick, primary, secondary, subdued, outline, disabled }) {
 	const className = ['btn'];
 	if (primary === true) {
 		className.push('primary');
@@ -15,6 +15,9 @@ function Button({ children, onClick, primary, secondary, subdued, outline }) {
 	if (outline === true) {
 		className.push('outline');
 	}
+	if (disabled === true) {
+		className.push('disabled');
+	}
 
 	return <button type="button" onClick={onClick} className={className.join(' ')}>{children}</button>;
 }
@@ -25,7 +28,8 @@ Button.propTypes = {
 	primary: propTypes.bool,
 	secondary: propTypes.bool,
 	subdued: propTypes.bool,
-	outline: propTypes.bool
+	outline: propTypes.bool,
+	disabled: propTypes.bool
 };
 
 Button.defaultProps = {
@@ -33,7 +37,8 @@ Button.defaultProps = {
 	primary: false,
 	secondary: false,
 	subdued: false,
-	outline: false
+	outline: false,
+	disabled: false
 };
 
 export default Button;

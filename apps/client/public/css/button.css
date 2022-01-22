@@ -18,10 +18,19 @@
 	border: 1px solid;
 }
 
+.primary {
+
+}
+
 .primary.outline {
 	color: var(--color-primary);
 	border-color: var(--color-primary);
 	background-color: var(--color-on-primary);
+}
+
+.disabled {
+	background-color: gray;
+	color: white;
 }
 
 .btn:hover, .btn:active {
