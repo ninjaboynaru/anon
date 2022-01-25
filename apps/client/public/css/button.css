@@ -2,7 +2,26 @@
 .btn {
 	border: none;
 	padding: 0.375rem 0.75rem;
-	border-radius: 0.25rem;
+	border-radius: 0.45rem;
+}
+
+.btn.wide {
+	padding: 0.375rem 1.5rem;
+}
+
+.btn.outline {
+	border: 1px solid;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.btm.disabled {
+	background-color: gray;
+	color: white;
+}
+
+.btn:hover, .btn:active {
+	filter: brightness(90%);
+	cursor: pointer;
 }
 
 .secondary {
@@ -14,26 +33,13 @@
     background-color: var(--color-secondary-subdued);
 }
 
-.outline {
-	border: 1px solid;
-}
-
 .primary {
-
+	background: var(--color-primary);
+	color: var(--color-on-primary);
 }
 
 .primary.outline {
 	color: var(--color-primary);
 	border-color: var(--color-primary);
-	background-color: var(--color-on-primary);
-}
-
-.disabled {
-	background-color: gray;
-	color: white;
-}
-
-.btn:hover, .btn:active {
-	filter: brightness(90%);
-	cursor: pointer;
+	/* background-color: var(--color-on-primary); */
 }

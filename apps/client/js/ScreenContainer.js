@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 
 function ScreenContainer({ children }) {
@@ -19,12 +19,12 @@ function ScreenContainer({ children }) {
 		<div className="screen-container">
 			<div className="screen-container__nav">
 				<div className="screen-container__nav__brand">
-					<FontAwesomeIcon icon={faPaperPlane} className="screen-container__nav__brand-icon" />
+					<FontAwesomeIcon icon={faGhost} className="screen-container__nav__brand-icon" />
 					<span className="screen-container__nav__brand-text">Anon</span>
 				</div>
 				<div className="screen-container__nav__buttons">
-					<Button secondary subdued={postsButtonSubdued} onClick={navPostsScreen}>Posts</Button>
-					<Button secondary subdued={aboutButtonSubdued} onClick={navAboutScreen}>About</Button>
+					<Button wide secondary subdued={postsButtonSubdued} onClick={navPostsScreen}>Posts</Button>
+					<Button wide secondary subdued={aboutButtonSubdued} onClick={navAboutScreen}>About</Button>
 				</div>
 			</div>
 			<div className="screen-container__content">

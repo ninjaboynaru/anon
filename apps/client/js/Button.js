@@ -1,8 +1,11 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-function Button({ children, onClick, primary, secondary, subdued, outline, disabled }) {
+function Button({ children, onClick, wide, primary, secondary, subdued, outline, disabled }) {
 	const className = ['btn'];
+	if (wide === true) {
+		className.push('wide');
+	}
 	if (primary === true) {
 		className.push('primary');
 	}
@@ -25,6 +28,7 @@ function Button({ children, onClick, primary, secondary, subdued, outline, disab
 Button.propTypes = {
 	children: propTypes.node,
 	onClick: propTypes.func.isRequired,
+	wide: propTypes.bool,
 	primary: propTypes.bool,
 	secondary: propTypes.bool,
 	subdued: propTypes.bool,
@@ -34,6 +38,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
 	children: null,
+	wide: false,
 	primary: false,
 	secondary: false,
 	subdued: false,

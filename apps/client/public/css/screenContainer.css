@@ -20,17 +20,18 @@
     display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	color: var(--color-on-primary);
 }
 
 .screen-container__nav__brand-icon {
-    font-size: 1rem;
+    font-size: 2rem;
+    margin-right: 0.5rem;
 }
 
 .screen-container__nav__brand-text {
     font-family: 'Merienda One';
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 
