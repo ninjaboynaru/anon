@@ -68,7 +68,7 @@ class CreatePostScrene extends React.Component {
 						<Button secondary disabled={loading} onClick={this.submit}>Submit</Button>
 						<Button secondary disabled={loading} onClick={this.cancel}>Cancel</Button>
 					</div>
-					<textarea onChange={this.onTextChange} value={text} disbaled={loading} placeholder="Say something..." className="create-post__input" />
+					<textarea onChange={this.onTextChange} value={text} disbaled={loading ? 'true' : undefined} placeholder="Say something..." className="create-post__input" />
 					<div className="create-post__input-info">
 						<span className="create-post__input-info__count">{`${this.state.text.length} of ${maxCharCount}`}</span>
 						<span className="create-post__input-info__error">{errorMessage}</span>
