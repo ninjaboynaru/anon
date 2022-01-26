@@ -21,8 +21,12 @@ async function connect() {
 		throw new Error(`Failed to connect to DB\n------\n${dbErr}\n------`);
 	}
 
-	app.listen(port, async() => {
+	const server = app.listen(port, async() => {
 		console.log(`API running on port ${port}`);
+	});
+
+	process.on('exit', () => {
+		server.close();
 	});
 }
 

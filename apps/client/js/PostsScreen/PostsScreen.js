@@ -28,8 +28,6 @@ class PostsScreen extends React.Component {
 		this.state = { posts: null, likedPosts: [], dislikedPosts: [], initialLoading: true, initialError: false, addonLoading: false, addonError: false, noMorePosts: false };
 
 		this.checkWindowScroll = this.checkWindowScroll.bind(this);
-		this.likePost = this.likePost.bind(this);
-		this.dislikePost = this.dislikePost.bind(this);
 	}
 
 	componentDidMount() {
@@ -83,14 +81,6 @@ class PostsScreen extends React.Component {
 				this.setState({ addonLoading: false, addonError: true });
 			}
 		);
-	}
-
-	likePost() {
-		console.log(this);
-	}
-
-	dislikePost() {
-		console.log(this);
 	}
 
 	buildPostWall() {
