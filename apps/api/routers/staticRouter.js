@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const publicDir = path.join(__dirname, '../../client/public');
 
-router.use(express.static(publicDir));
+router.use(express.static(publicDir, { cacheControl: false }));
 router.get('*', (req, res) => {
 	res.sendFile(path.join(publicDir, 'index.html'));
 });

@@ -9,6 +9,10 @@ import Button from '../Button';
 import Post from './Post';
 import api from '../api';
 
+function windowScrolledToBottom() {
+	return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2;
+}
+
 function LoadingIndicator() {
 	return <LoadingIcons.BallTriangle stroke="#724ed0" />;
 }
@@ -43,9 +47,8 @@ class PostsScreen extends React.Component {
 		const { initialLoading, initialError, addonLoading, addonError, noMorePosts } = this.state;
 		const loading = initialLoading || addonLoading;
 		const error = initialError || addonError;
-		const atBottomOfScreen = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2;
 
-		if (atBottomOfScreen && !loading && !error && !noMorePosts) {
+		if (windowScrolledToBottom() && !loading && !error && !noMorePosts) {
 			this.loadAddonPosts();
 		}
 	}
@@ -53,8 +56,7 @@ class PostsScreen extends React.Component {
 	loadInitialPosts() {
 		api.getPosts(this.page).then(
 			(posts) => {
-				this.setState({ initialLoading: false, posts });
-				this.checkWindowScroll();
+				this.setState({ initialLoading: false, posts }, this.checkWindowScroll);
 			},
 			() => {
 				this.setState({ initialLoading: false, initialError: true });
@@ -69,13 +71,11 @@ class PostsScreen extends React.Component {
 			(posts) => {
 				if (posts.length !== 0) {
 					this.page += 1;
-					this.setState((prevState) => ({ posts: [...prevState.posts, ...posts] }));
+					this.setState((prevState) => ({ addonLoading: false, posts: [...prevState.posts, ...posts] }), this.checkWindowScroll);
 				}
 				else {
-					this.setState({ noMorePosts: true });
+					this.setState({ addonLoading: false, noMorePosts: true });
 				}
-
-				this.setState({ addonLoading: false });
 			},
 			() => {
 				this.setState({ addonLoading: false, addonError: true });

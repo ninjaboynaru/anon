@@ -24,7 +24,14 @@ class Post {
 
 	static async get(limit = 10, page = 0) {
 		const queryString = 'SELECT * FROM post ORDER BY date DESC LIMIT $1 OFFSET $2';
-		const values = [limit, page * limit];
+		let offset = page * limit;
+
+		if (page > 0) {
+			// do this to avoid returning duplicate posts
+			offset += 1;
+		}
+
+		const values = [limit, offset];
 		const { rows } = await db.query({ text: queryString, values });
 
 		return rows.map((plainPost) => new Post(plainPost));
