@@ -1,5 +1,7 @@
 @import 'css/variables.css';
 @import 'css/base.css';
+
+@import 'css/notFound.css';
 @import 'css/about.css';
 @import 'css/button.css';
 @import 'css/createPost.css';

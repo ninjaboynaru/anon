@@ -1,0 +1,9 @@
+.not-found-img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.not-found-header {
+    color: var(--color-primary);
+    text-align: center;
+}
