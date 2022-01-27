@@ -26,12 +26,12 @@
 
 .screen-container__nav__brand-icon {
     font-size: 2rem;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 }
 
 .screen-container__nav__brand-text {
     font-family: 'Merienda One';
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 

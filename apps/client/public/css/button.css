@@ -41,5 +41,10 @@
 .primary.outline {
 	color: var(--color-primary);
 	border-color: var(--color-primary);
-	/* background-color: var(--color-on-primary); */
+}
+
+@media (min-width: 600px) {
+	.btn {
+		font-size: 1rem;
+	}
 }
