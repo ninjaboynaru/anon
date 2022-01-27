@@ -5,6 +5,8 @@
   "scripts": {
     "watch:api": "nodemon --watch apps/api apps/api/index.js",
     "watch:client": "webpack --watch",
+    "build": "webpack",
+    "start": "node apps/api/index.js",
     "lint:api": "esw apps/api/**/*.js --color --fix --watch"
   },
   "dependencies": {
