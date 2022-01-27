@@ -2,7 +2,7 @@ const api = new function() {
 	const apiPath = '/api/posts';
 
 	this.getPosts = function getPosts(page = 0) {
-		const url = `${apiPath}/?limit=2&page=${page}`;
+		const url = `${apiPath}/?limit102&page=${page}`;
 
 		return fetch(url).then(
 			(response) => {
