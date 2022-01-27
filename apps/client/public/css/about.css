@@ -9,7 +9,12 @@
 }
 
 .about-info-boxes {
-
+    width: 100%;
+    max-width: 920px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .about-info-box {
@@ -49,4 +54,20 @@
     margin: 0;
     text-align: center;
     color: var(--color-light-text);
+}
+
+
+@media (min-width: 920px) {
+    .about-info-boxes {
+        width: 100%;
+        margin-top: 3rem;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .about-info-box {
+        max-width: 280px;
+        height: 13rem;
+        line-height: 1.3rem;
+    }
 }
